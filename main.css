@@ -1,0 +1,43 @@
+body {
+  background: #999;
+  background: url('imgs/otis_redding.png') repeat;
+  font-family: monospace;
+  color: #666;
+}
+
+.container {
+  width: 600px;
+  margin: 10% auto;
+  padding: 20px;
+  background: white;
+  text-align: center;
+  box-shadow: 0px 0px 4px rgba(0,0,0,0.8);
+}
+
+.world {
+  padding: 20px;
+  background: #444;
+  box-shadow: inset 0px 0px 4px rgba(0,0,0,1);
+}
+
+.world-map {
+  width: 100%;
+  background: #444;
+}
+
+.world-map td {
+  text-align: center;
+  vertical-align: middle;
+  width: 25px;
+  height: 25px;
+  color: #fff;
+  font-size: 20px;
+}
+
+td.plant {
+  color: #7BF297;
+}
+
+td.plant-eater {
+  color: #FFC739;
+}

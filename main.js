@@ -183,17 +183,45 @@ function charFromElement(element) {
   }
 }
 
-World.prototype.toString = function (separator) {
+World.prototype.toString = function() {
   var output = "";
-  if (typeof separator == 'undefined') { separator = "\n" }
   for (var y = 0; y < this.grid.height; y++) {
     for (var x = 0; x < this.grid.width; x++) {
       var element = this.grid.get(new Vector(x, y));
       output += charFromElement(element);
     }
-    output += separator;
+    output += "\n";
   }
   return output;
+};
+
+var cellStyles = {
+  "#": 'wall',
+  "O": 'plant-eater',
+  "*": 'plant'
+}
+
+function buildCell(char){
+  var css = cellStyles[char];
+  var output = "<td class='" + css + "'>" +
+               char + "</td>"
+  return output;
+}
+
+World.prototype.toHtmlTable = function() {
+  var table = "<table class='world-map'>";
+  var row = "";
+  for (var y = 0; y < this.grid.height; y++) {
+    row = "<tr>";
+    for (var x = 0; x < this.grid.width; x++) {
+      var element = this.grid.get(new Vector(x, y));
+      row += buildCell(charFromElement(element));
+    }
+    row = row + "</tr>";
+    table += row;
+  }
+  table = table + "</table>";
+  return table;
 };
 
 World.prototype.turn = function() {
@@ -208,6 +236,7 @@ World.prototype.turn = function() {
 };
 
 World.prototype.draw = function() {
+  this.container.innerHTML = this.toHtmlTable();
   console.log(this.toString());
 };
 
